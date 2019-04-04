@@ -1,0 +1,16 @@
+{
+  "pages":[
+
+    "pages/home/home",
+    "pages/edit/edit",
+    "pages/setting/setting",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "wechat",
+    "navigationBarTextStyle":"black"
+  }
+}

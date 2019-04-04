@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "fab-button":"../../component/fab-button/fab-button",
+    "zhuanpan":"../../component/zhuanpan/zhuanpan"
+  },
+  "navigationBarBackgroundColor": "#b3d4db"
+}

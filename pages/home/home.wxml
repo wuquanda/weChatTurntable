@@ -1,0 +1,5 @@
+<!--pages/home/home.wxml-->
+<zhuanpan></zhuanpan>
+<view class="wux-fab-button__label"> wuquanda</view>
+<fab-button position="bottomRight"  theme="calm"   buttons="{{people}}" bindclick="mytest"> </fab-button>
+
