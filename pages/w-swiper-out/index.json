@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "标签管理",
-  "usingComponents": {
-    "w-swiper-out": "/dist/w-swiper-out/index",
-    "w-pane": "/dist/w-pane/index"
-  }
-}

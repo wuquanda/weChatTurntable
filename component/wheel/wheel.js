@@ -25,35 +25,20 @@ Component({
          }
       },
 
-      probability: {
-         type: Boolean, // 概率开关，默认随机 false
-         value: false
-      },
-
       musicflg: {
          type: Boolean, // 转盘声音开关，默认true
          value: true
       },
 
-      fastJuedin: {
-         type: Boolean, // 快速转动转盘的开关，默认false
-         value: false
-      },
-
-      repeat: {
-         type: Boolean, // 重复抽取开关，默认false
-         value: false
-      },
-
       size: {
          type: Object, // 转盘大小，宽高单位rpx
          value: {
-            w: 659, // 注意宽要比高小1rpx
-            h: 660
+            w: 559, // 注意宽要比高小1rpx
+            h: 560
          }
       },
 
-      zhuanpanArr: { // 可以切换的转盘选项, 支持多个
+      wheelArray: { // 可以切换的转盘选项, 支持多个
          type: Array,
          value: [
             {
@@ -64,13 +49,16 @@ Component({
                      id: 0,
                      name: "最多17个选项", // 选项名
                      color: 'red',        // 选项的背景颜色
-                     probability: 0       // 概率
                   },
                   {
                      id: 1,
                      name: "选项最多填13字", // 超过9个字时字体会变小点
                      color: 'green',
-                     probability: 0
+                  },
+                  {
+                    id:2,
+                    name:"怎么说？",
+                    color:'blue',
                   }
                ],
             }
@@ -78,7 +66,7 @@ Component({
       },
 
       // 限制：最多17个选项， 单个选项最多填10-13个字, 选项名称最多21个字
-      awardsConfig: { // 默认的当前转盘选项 
+      wheelConfig: { // 默认的当前转盘选项 
          type: Object,
          value: {
             option: '我的小决定？',
@@ -94,6 +82,11 @@ Component({
                   name: "选项最多填13字",
                   color: 'green',
                   probability: 0
+               },
+               {
+                 id:2,
+                 name:"巫权达",
+                 color:'blue'
                }
             ],
          }
@@ -107,7 +100,7 @@ Component({
     */
    data: {
       animationData: {}, // 转盘动画
-      zhuanflg: false,   // 转盘是否可以点击切换的标志位
+      zhuanflg: false,   // 转盘是否可以点击切换的标志位？？？？？？？？？？？
       fastTime: 7600,    // 转盘快速转动的时间
       slowTime: 3900,    // 转盘慢速转动的时间
       block1: 'block',   // 转盘中心的图片标志位，用来显示隐藏
@@ -129,7 +122,7 @@ Component({
       stop.src = 'https://gamesdata.oss-cn-hangzhou.aliyuncs.com/xiaojueding/stop.mp3';   // 转盘停止转动的音乐
 
       this.setData({
-         awardsConfig: this.data.zhuanpanArr[0]
+         wheelConfig: this.data.wheelArray[0]
       })
       this.initAdards();
    },
@@ -153,18 +146,18 @@ Component({
 
       //初始化数据
       initAdards() {
-         var that = this, awardsConfig = that.data.awardsConfig;
-         var t = awardsConfig.awards.length;  // 选项长度
+         var that = this, wheelConfig = that.data.wheelConfig;
+         var t = wheelConfig.awards.length;  // 轮盘上有多少种选择，即轮盘被划分多少等份
          var e = 1 / t, i = 360 / t, r = i - 90;
 
          for (var g = 0; g < t; g++) {
-            awardsConfig.awards[g].item2Deg = g * i + 90 - i / 2 + "deg";//当前下标 * 360/长度 + 90 - 360/长度/2
-            awardsConfig.awards[g].afterDeg = r + "deg";
+            wheelConfig.awards[g].item2Deg = g * i + 90 - i / 2 + "deg";//当前下标 * 360/长度 + 90 - 360/长度/2
+            wheelConfig.awards[g].afterDeg = r + "deg";
          }
 
          that.setData({
             turnNum: e, // 页面的单位是turn
-            awardsConfig: awardsConfig,
+            wheelConfig: wheelConfig,
          })
 
          that._change();//向父组件传出当前转盘的初始数据
@@ -172,8 +165,8 @@ Component({
 
       //重置转盘
       reset() {
-         var that = this, awardsConfig = that.data.awardsConfig;
-         console.log(awardsConfig);
+         var that = this, wheelConfig = that.data.wheelConfig;
+         console.log(wheelConfig);
          var animation = wx.createAnimation({
             duration: 1,
             timingFunction: "linear"
@@ -186,8 +179,8 @@ Component({
             block4: 'block'
          })
 
-         for (let x in awardsConfig.awards) {
-            awardsConfig.awards[x].opacity = '1';
+         for (let x in wheelConfig.awards) {
+            wheelConfig.awards[x].opacity = 1;
          }
 
          setTimeout(function () {
@@ -196,20 +189,20 @@ Component({
                block2: 'none',
                block3: 'none',
                block4: 'none',
-               awardsConfig: awardsConfig,
+               wheelConfig: wheelConfig,
             })
 
-            that._myAwards(true);
+            that._myAwards(true);//将轮盘结果传递给父组件
          }, 300)
       },
 
       //父组件需要切换当前转盘的选项
       //如果有需要切换不同转盘的选项时，可以调用这方法
-      //obj: 转盘的数据
+      //data: 转盘的数据
       //flag: 当转盘在转动过程中的标志位，默认可不传
       switchZhuanpan(data, flag) {
          this.setData({
-            awardsConfig: data,
+            wheelConfig: data,
             block1: 'block',
             block3: 'none',
             zhuanflg: false,
@@ -237,45 +230,33 @@ Component({
       // GO转盘开始转动
       _zhuan() {
          var that = this;
-         var awardsConfig = that.data.awardsConfig;
+         var wheelConfig = that.data.wheelConfig;
 
-         //>>> 是无符号移位运算符
-         var r = Math.random() * awardsConfig.awards.length >>> 0, runNum = 8;
-
-
-         /*=============不重复抽取=============*/
-         if (that.data.repeat) {
-            r = that._queryRepeat(r);
-         } else {
-            wx.removeStorageSync('repeatArr');
-
-            console.log('是否开启了概率？？？', that.data.probability);
-            //开启概率 probability这属性必须要传个ture
-            if (that.data.probability) {
-               r = that._openProbability();
-            }
-         }
-         /*=============不重复抽取=============*/
-
-
+         /*
+          *>>> 无符号移位：该操作符会将第一个操作数向右移动指定的位数。向右被移出的位被丢弃，左侧用0填充。因为符号位变成了 0，所以结果总是非负的
+          * 移位操作符在移位前做了两种转换，第一将不是number类型的数据转换为number，第二将number转换为无符号的32bit数据，即Uint32类型。这些与移              * 位的位数无关，移位0位主要就是用了js的内部特性做了前两种转换。
+          */
+         var r = Math.random() * wheelConfig.awards.length >>> 0, runNum = 8;
          console.log('当前答案选项的下标==', r);
          setTimeout(function () {
 
             //转盘开始转动音乐
-            that.data.musicflg ? that.data.fastJuedin ? mid.play() : start.play() : '';
+            that.data.musicflg ? start.play() : '';
 
             //要转多少度deg
-            app.runDegs = app.runDegs || 0, app.runDegs = app.runDegs + (360 - app.runDegs % 360) + (2160 - r * (360 / awardsConfig.awards.length));
+            app.runDegs = app.runDegs || 0, 
+            app.runDegs = app.runDegs + (360 - app.runDegs % 360) + (2160 - r * (360 / wheelConfig.awards.length));
 
             var animation = wx.createAnimation({
-               duration: that.data.fastJuedin ? that.data.slowTime : that.data.fastTime,
+               duration:that.data.slowTime,
                timingFunction: "ease"
             });
             that.animation = animation;
 
             //这动画执行的是差值 
             //如果第一次写rotate（360） 那么第二次再写rotate（360）将不起效果
-            animation.rotate(app.runDegs).step(), 0 == r && (app.runDegs = 0);
+            animation.rotate(app.runDegs).step(),
+            0 == r && (app.runDegs = 0);
 
             that.setData({
                animationData: animation.export(),
@@ -288,12 +269,13 @@ Component({
             that._setatZhuan(true);
          }, 100);
 
+        //使转盘停止后，非选中的区域透明度变低，视觉效果是选中选项正常，其他选项颜色变淡。
          timer = setTimeout(function () {
-            for (let x in awardsConfig.awards) {
+            for (let x in wheelConfig.awards) {
                if (x != r) {
-                  awardsConfig.awards[x].opacity = '0.3';
+                  wheelConfig.awards[x].opacity = '0.3';
                } else {
-                  awardsConfig.awards[x].opacity = '1';
+                  wheelConfig.awards[x].opacity = '1';
                }
             }
 
@@ -302,8 +284,8 @@ Component({
 
             that.setData({
                animationData: {},
-               s_awards: awardsConfig.awards[r].name,//最终选中的结果
-               awardsConfig: awardsConfig,
+               s_awards: wheelConfig.awards[r].name,//最终选中的结果
+               wheelConfig: wheelConfig,
                block1: 'none',
                block2: 'none',
                block3: 'block',
@@ -312,59 +294,12 @@ Component({
 
             that._myAwards(false);
             that._setatZhuan(false);
-         }, that.data.fastJuedin ? that.data.slowTime : that.data.fastTime);
-      },
-
-
-      // 开启概率 
-      // 传 1-100 的数 来设置选项的权重  
-      // 传入0的话就永远摇不到这个选项
-      _openProbability() {
-         var that = this, awards = that.data.awardsConfig.awards, arr = [];
-         //5, 5, 20, 10 ,30 ,30, 0
-         for (let i in awards) {
-            if (awards[i].probability != 0) {
-               for (var x = 0; x < awards[i].probability; x++) {
-                  //把当前的概率数字 以当前选项下标的形式 都添加都空数组中，然后随机这个数组
-                  arr.push(i);
-               }
-            }
-         }
-         var s = Math.floor(Math.random() * arr.length);
-         return arr[s];
-      },
-
-      //不重复抽取
-      //r:随机数 当前选项进行随机
-      _queryRepeat(r) {
-         var that = this, flag = true, repeatArr = wx.getStorageSync('repeatArr'), repeatArr2 = [], awardsConfig = that.data.awardsConfig;
-         if (that.isNull(repeatArr)) {
-            repeatArr2.push(r), wx.setStorageSync('repeatArr', repeatArr2);
-            return r;
-         } else {
-            var len = awardsConfig.awards.length, r = Math.random() * len >>> 0;
-            for (let i in repeatArr) {
-               if (r == repeatArr[i]) {
-                  flag = false;
-                  if (repeatArr.length == len) {
-                     wx.removeStorageSync('repeatArr');
-                     repeatArr2.push(r), wx.setStorageSync('repeatArr', repeatArr2);
-                     return r;
-                  } else {
-                     return that._queryRepeat();//递归调用
-                  }
-               }
-            }
-            if (flag) {
-               repeatArr.push(r), wx.setStorageSync('repeatArr', repeatArr);
-               return r;
-            }
-         }
+         }, that.data.slowTime);
       },
 
       //初始化数据时向外传的参
       _change() {
-         this.triggerEvent('myData', this.data.awardsConfig);// 向父组件传出当前决定的数组数据
+         this.triggerEvent('myData', this.data.wheelConfig);// 向父组件传出当前决定的数组数据
       },
 
       //当前转盘的结果   e:转盘什么时候能点击的标志位

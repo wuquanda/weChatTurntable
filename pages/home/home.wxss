@@ -37,3 +37,29 @@ page{
   opacity:0;box-sizing:border-box;
   transform:translate3d(0,-50%,0);
   transition:all .3s}
+
+.example-content {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.wheel-label{
+  position:relative;
+  display: flex;
+  height: 48rpx;
+  width: 375rpx;
+  background:rgba(80, 164, 233, 0.356);
+  font-size:40rpx;
+  direction: center;
+}
+.wheel-label wheel-label-text{
+  height: 48rpx;
+  width:300rpx;
+}
+
+.wheel-label-icon{
+  position:relative;
+  height:48rpx;
+  width: 48rpx;
+}

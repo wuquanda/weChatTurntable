@@ -69,10 +69,14 @@
 
 .wuss-swiper-out-left {
   height: 100%;
+  width: 85%;
 }
 
 .wuss-swiper-out-left>view {
   height: 100%;
 }
 
-.wuss-swiper-out-right {}
+.wuss-swiper-out-right {
+  width: 15%;
+  height: 100%;
+}

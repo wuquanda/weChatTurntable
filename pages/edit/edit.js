@@ -1,18 +1,22 @@
 // pages/edit/edit.js
+var app=getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+     index:-1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
- 
+    console.log(options)
+    this.setData({
+      index:options.index
+    })
   },
 
   /**
@@ -61,6 +65,21 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+  },
 
+  saveData:function(newData,index){
+    app.globalData.wheelArray[index]=newData
+    wx.setStorage({
+      key: 'wheelArray',
+      data: newData,
+    })
+  },
+
+  deleteData:function(index){
+    app.globalData.wheelArray.splice(index, 1);
+    wx.setStorage({
+      key: 'wheelArray',
+      data: app.globalData.wheelArray,
+    })
   }
 })

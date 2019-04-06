@@ -1,7 +1,10 @@
 {
   "usingComponents": {
     "fab-button":"../../component/fab-button/fab-button",
-    "zhuanpan":"../../component/zhuanpan/zhuanpan"
+    "wheel":"../../component/wheel/wheel",
+    "w-swiper-out": "../../component/w-swiper-out/w-swiper-out",
+    "w-pane": "../../component/w-pane/w-pane"
+
   },
   "navigationBarBackgroundColor": "#b3d4db"
 }

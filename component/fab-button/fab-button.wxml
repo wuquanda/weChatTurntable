@@ -33,7 +33,7 @@
 		>
 			<image class="{{ classes.icon }}" src="{{ button.icon }}" />
 			<view class="{{ classes.label }}" wx:if="{{ button.label }}">{{ button.label }}</view>
-      <text class='buttonTitle'>新建</text>
+      <text class='buttonTitle'>{{button.label}}</text>
 		</button>
 	</block>
 </view>

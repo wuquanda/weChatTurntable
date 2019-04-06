@@ -1,11 +1,7 @@
 {
   "pages":[
-
     "pages/home/home",
-    "pages/edit/edit",
-    "pages/setting/setting",
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/edit/edit"
   ],
   "window":{
     "backgroundTextStyle":"dark",

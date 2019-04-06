@@ -1,5 +1,20 @@
 <!--pages/home/home.wxml-->
-<zhuanpan></zhuanpan>
-<view class="wux-fab-button__label"> wuquanda</view>
-<fab-button position="bottomRight"  theme="calm"   buttons="{{people}}" bindclick="mytest"> </fab-button>
+<view>{{optionName}}</view>
+<wheel id='wheelComponent'></wheel>
+
+<!--这是轮盘选项标签 -->
+<block wx:for="{{wheelArray}}" wx:for-item="wheel" wx:key="index">
+  <w-swiper-out 
+  swiperOutBtns="{{swiperButtonSelect}}"
+  bind:delete="delete"
+  bind:edit="edit"
+  data-index="{{index}}"
+  >  
+  <view  class="wheel-label" bindtap="add" data-index="{{index}}">
+    <text class="wheel-label-text">{{wheel.optionName}}</text>
+    <image class="wheel-label-icon" src="/icon/doubleleft.png">这个放一张向左的箭头指引用户左滑操作</image>
+  </view>
+  </w-swiper-out>
+</block>
+<fab-button position="bottomRight"  theme="calm"   buttons="{{fabButtonArr}}" bindclick="mytest"> </fab-button>
 
