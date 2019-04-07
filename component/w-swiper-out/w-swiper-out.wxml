@@ -1,15 +1,15 @@
 <movable-area
- class="wuss-class wuss-swiper-out"
+ class="wuss-swiper-out"
  scale-area="false"
- style="width: {{ _width }}px;height: {{ height }}px;background-color: {{ backgroundColor }};"
+ style="width: {{ _width }}rpx;height: {{ height }}rpx;background-color: {{ backgroundColor }};"
 >
 	<movable-view
-	 inertia
-	 out-of-bounds="{{ out }}"
+	 inertia="true"
+   out-of-bounds="{{ out }}"
 	 animation
 	 x="{{ _scrollX }}"
 	 class="wuss-swiper-out-view"
-	 style="width: {{ _width + _slideWidth }}px;height: {{ height }}px;"
+	 style="width: {{ _width + _slideWidth}}rpx;height: {{ height }}rpx;"
 	 direction="horizontal"
 	 damping="60"
 	 disabled="{{ disabled }}"
@@ -24,8 +24,10 @@
 		 catchtap="handleLeftClick"
 		>
 			<slot/>
+      
 		</view>
-		<view class="wuss-swiper-out-right wuss-swiper-out-btns" style="width:{{ _slideWidth }}px;height: {{ height - 3 }}px;left: {{ _width }}px;">
+		<view class="wuss-swiper-out-right wuss-swiper-out-btns" style="width:{{ _slideWidth }}rpx;height: {{ height - 3 }}rpx;left: {{ _width }}rpx;">
+      
 			<view
 			 class="wuss-swiper-out-btn {{ item.disabled ? 'wuss-weiper-out-btn-disabled' : '' }}"
 			 style="background-color: {{ item.background }};color: {{ item.color }};font-size: {{ item.size }};"
@@ -36,9 +38,7 @@
 			 data-key="{{ index }}"
 			 catchtap="handleBtnClick"
 			>
-				{{
-				item.text
-				}}
+				{{item.text}}
 			</view>
 		</view>
 	</movable-view>

@@ -1,8 +1,13 @@
 
 @import '../common/theme/global.wxss';
 
+/* 此处调整轮盘下的标签的位置*/
 .wuss-swiper-out {
   overflow: hidden;
+  left:20%;
+  border-radius: 20px;
+  margin: 20rpx;   
+ 
 }
 
 .wuss-swiper-out-view {
@@ -10,7 +15,7 @@
 }
 
 .wuss-swiper-out-view::before {
-  content: " ";
+  content: "";
   position: absolute;
   left: 0;
   top: 1px;
@@ -24,7 +29,7 @@
 }
 
 .wuss-swiper-out-view::after {
-  content: " ";
+  content: "";
   position: absolute;
   left: 0;
   bottom: 1px;
@@ -40,21 +45,21 @@
 .wuss-swiper-out-btns {
   position: absolute;
   top: 50%;
-  transform: translate(0, -50%);
-  z-index: 1000;
+  transform: translate(0, -50%); /*移动元素位置*/
+  z-index: 1000; /*设置z轴方向的显示层次优先级*/
   background: #ffffff;
   display: flex;
   align-items: center;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: nowrap; /*该组件包含的子组件不换行 */
 }
 
 
 .wuss-swiper-out-btn {
   display: flex;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
+  flex: 1;  /*设置内含组件元素同一长度*/
+  justify-content: center;/*内含元素x轴居中排列*/
+  align-items: center;   /*内含元素y轴居中排列 */
   flex-direction: row;
   flex-wrap: nowrap;
   text-align: center;
@@ -69,7 +74,7 @@
 
 .wuss-swiper-out-left {
   height: 100%;
-  width: 85%;
+  width: 200;
 }
 
 .wuss-swiper-out-left>view {
@@ -79,4 +84,11 @@
 .wuss-swiper-out-right {
   width: 15%;
   height: 100%;
+}
+
+.mytest{
+  position: absolute;
+  left:-50%;
+  height: 48rpx;
+  width:48rpx;
 }

@@ -21,7 +21,7 @@ WussComponent({
    */
   properties: {
     swiperOutBtns: {
-      type: Array,
+      type: Array,  //存放左滑后选择功能按钮的数组
       value: []
     },
     backgroundColor: {
@@ -30,11 +30,11 @@ WussComponent({
     },
     buttonWidth: {
       type: Number,
-      value: 0
+      value: 100    //滑动选择按钮：编辑和删除的长度，设置为0使用默认长度
     },
     height: {
-      type: Number,
-      value: 48
+      type: Number, 
+      value: 100 //标签的高度
     },
     threshold: {
       type: Number,
@@ -61,7 +61,7 @@ WussComponent({
     _startX: 0,
     _slideWidth: 0,
     out: true,
-    _width: SYSTEM_INFO.windowWidth,
+    _width: SYSTEM_INFO.windowWidth*1.25, //轮盘下标签的宽度
     _threshold: 0
   },
   methods: {

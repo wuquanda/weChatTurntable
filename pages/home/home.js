@@ -7,6 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+
+    //右下角的浮动按钮
     fabButtonArr:[
     {
       "icon":"/icon/plus-circle.png",
@@ -14,12 +16,13 @@ Page({
       disable:false
     },
     {
-      "icon":"",
+      "icon":"/icon/edit-square.png",
       label:"编辑",
       diable:false
     }
     ],
 
+    //轮盘标签方案的左滑按钮
     swiperButtonSelect: [
     {
       text: '编辑',
@@ -39,9 +42,11 @@ Page({
     },
     ],
 
-    wheelArray:{},
-    wheelConfig:{},
-    optionName:'',
+    wheelArray:{}, //用户的轮盘标签方案数组
+    wheelConfig:{},//当前轮盘显示的标签方案
+    optionName:'', //当前轮盘显示的标签方案名称
+
+    //默认的轮盘标签方案，仅在用户删除了所有的标签方案后显示
     defaultWheelConfig:{
       optionName:"遇事不决转一下？",
       awards:[
@@ -57,6 +62,10 @@ Page({
     }
   },
 
+  /*
+   *标签方案左滑功能删除：全局变量app.globalData.wheelArray保存用户数据，点击指定标签传入该标签在数组中的下标
+   *删除后，更新本地缓存
+   */
   delete:function (e){
     var that=this
     app.globalData.wheelArray.splice(e.currentTarget.dataset.index,1);
@@ -76,10 +85,9 @@ Page({
     })
   },
 
+  //点击标签，在轮盘显示上显示
   add:function(e){
     this.setWheelData(e.currentTarget.dataset.index)
-    console.log("wuquanda")
-    
   },
 
 
@@ -93,18 +101,6 @@ Page({
     this.setData({
       wheelArray:app.globalData.wheelArray
     })
-   /* if(that.data.wheelArray.length==0){
-      this.wheelComponent.switchZhuanpan(that.data.defaultWheelConfig)
-      that.setData({
-        optionName: that.data.defaultWheelConfig.optionName
-      })
-    }else{
-      this.wheelComponent.switchZhuanpan(that.data.wheelArray[0])
-      that.setData({
-        optionName:that.data.wheelArray[0].optionName
-      })
-    }
-    */
     this.setWheelData();
   },
 
@@ -119,7 +115,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that = this;
+      this.setData({
+        wheelArray: app.globalData.wheelArray
+      })
+    this.setData({
+      wheelArray: app.globalData.wheelArray
+    })
+    this.setWheelData();
   },
   
 
@@ -167,6 +170,7 @@ Page({
     onPress.call(this);
   },
 
+  //设置生成显示标签方案并且设置轮盘内容,当wheelArray为null时，显示默认方案
   setWheelData(index){
     var index=index||0
     if (this.data.wheelArray.length == 0) {

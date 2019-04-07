@@ -1,9 +1,5 @@
 // components/zhuanpan/zhuanpan.js
 //创建并返回内部 audio 上下文 innerAudioContext 对象
-const start = wx.createInnerAudioContext();
-const mid = wx.createInnerAudioContext();
-const stop = wx.createInnerAudioContext();
-
 var app = getApp(), timer = null;
 
 Component({
@@ -117,9 +113,6 @@ Component({
    // 组件生命周期函数，在组件实例进入页面节点树时执行
    attached: function () {
       console.log('==========attached==========');
-      start.src = 'https://gamesdata.oss-cn-hangzhou.aliyuncs.com/xiaojueding/start.mp3'; // 转盘开始转动的音乐
-      mid.src = 'https://gamesdata.oss-cn-hangzhou.aliyuncs.com/xiaojueding/mid.mp3';     // 快速决定时，转盘开始转动的音乐
-      stop.src = 'https://gamesdata.oss-cn-hangzhou.aliyuncs.com/xiaojueding/stop.mp3';   // 转盘停止转动的音乐
 
       this.setData({
          wheelConfig: this.data.wheelArray[0]
@@ -240,9 +233,6 @@ Component({
          console.log('当前答案选项的下标==', r);
          setTimeout(function () {
 
-            //转盘开始转动音乐
-            that.data.musicflg ? start.play() : '';
-
             //要转多少度deg
             app.runDegs = app.runDegs || 0, 
             app.runDegs = app.runDegs + (360 - app.runDegs % 360) + (2160 - r * (360 / wheelConfig.awards.length));
@@ -278,10 +268,6 @@ Component({
                   wheelConfig.awards[x].opacity = '1';
                }
             }
-
-            //转盘停止后的音乐
-            !that.data.musicflg ? '' : stop.play();
-
             that.setData({
                animationData: {},
                s_awards: wheelConfig.awards[r].name,//最终选中的结果
@@ -291,10 +277,20 @@ Component({
                block3: 'block',
                zhuanflg: false,
             })
-
             that._myAwards(false);
             that._setatZhuan(false);
+
+            //弹出结果并且点击确定后自动重置轮盘
+            wx.showModal({
+              title: '这次的结果是',
+              content: wheelConfig.awards[r].name,
+              showCancel: false,
+              success(res) {
+                that.reset()
+              }
+            })
          }, that.data.slowTime);
+
       },
 
       //初始化数据时向外传的参

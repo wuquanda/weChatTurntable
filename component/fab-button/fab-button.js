@@ -87,7 +87,7 @@ baseComponent({
         },
         defaultVisible: {
             type: Boolean,
-            value: true,
+            value: false, //默认自动不弹出按钮,即首次加载需要用户点击才展开按钮
         },
         visible: {
             type: Boolean,

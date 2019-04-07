@@ -3,15 +3,6 @@ page{
   background-color:#dddddd;
 }
 
-.quan
-.wu{
-  font-size: 200px;
- 
-}
-.op{
-  font-size:100px
-}
-
 .wux-fab-button__label{
   position: absolute;
   top:50%;
@@ -38,20 +29,18 @@ page{
   transform:translate3d(0,-50%,0);
   transition:all .3s}
 
-.example-content {
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-}
 
 .wheel-label{
   position:relative;
   display: flex;
-  height: 48rpx;
-  width: 375rpx;
+  height: 100rpx;
+  width: 75%;   /* 调整轮盘下便签的左边条的长度,实际长度为width/2 */
   background:rgba(80, 164, 233, 0.356);
-  font-size:40rpx;
-  direction: center;
+  font-size:40rpx; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 .wheel-label wheel-label-text{
   height: 48rpx;
@@ -63,3 +52,13 @@ page{
   height:48rpx;
   width: 48rpx;
 }
+
+.container {
+   margin: 0 auto;
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 30rpx;
+}
+

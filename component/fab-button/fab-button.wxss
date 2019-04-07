@@ -41,12 +41,6 @@
   opacity:.8!important}
 
 .wux-fab-button__action--hide-shadow{box-shadow:none!important}
-.wux-fab-button__icon{
-  display:inline-block;
-  width:105rpx;
-  height:105rpx;
-  font-size:105rpx;
-  line-height:1}
 
 .wux-fab-button__text{
   display:inline-block;
@@ -191,7 +185,16 @@
 .wux-fab-button--dark 
   .wux-fab-button__button--disabled{background-color:#444!important}
 
+/*这个是调整弹出按钮文字位置大小等*/
 .buttonTitle{
   position: absolute;
   top:-50rpx;
 }
+
+/* 这个调整弹出按钮的内嵌图片*/
+.wux-fab-button__icon{
+  display:inline-block;
+  width:80rpx;
+  height:80rpx;
+  font-size:80rpx;
+  line-height:1}

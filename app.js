@@ -2,6 +2,8 @@
 App({
 
   globalData:{
+
+    //保存了用户所有的轮盘选项方案的数组
     wheelArray: [
       {
         optionName: "决定一下今天的心情？",
@@ -39,16 +41,14 @@ App({
       }
     ]
   },
+
   onLaunch: function () {
-    wx.getStorage({
-      key: 'wheelArray',
-      success: function(res) {
-        this.setData({
-          wheelArray:res.data
-        })
-        console.log("正在获取缓存")
-      },
-    })
+    var that=this
+    var x =wx.getStorageSync("wheelArray");
+    //读取本地缓存，注意2种特殊情况：1.用户首次进入，此时本地缓存为undefined和null；2.用户将wheelArray中所有内容删除，此时为null
+    if (typeof (x) != undefined&&x){
+      this.globalData.wheelArray=x
+    }
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
