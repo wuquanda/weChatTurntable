@@ -1,0 +1,34 @@
+<!--pages/edit/edit.wxml-->
+<view >
+
+   <view class="modules_box modules_question_box">
+      <view class="modules_icon_box">
+         <image class="modules_icon" mode="scaleToFill" src="https://gamesdata.oss-cn-hangzhou.aliyuncs.com/xiaojueding/icon_edit_question_60.png"></image>
+      </view>
+      <view class="modules_input_box">
+         <input bindinput="checkOptionName" class="modules_input" maxlength="21" placeholder="轮盘名称" placeholderStyle="color:#cfcfcf;" type="text" value="{{optionName}}"></input>
+      </view>
+   </view>
+
+   <view class="modules_box modules_answer_box" wx:for="{{awards}}" wx:key="unique">
+      <view bindtap="subItem" class="modules_icon_box" data-index="{{index}}">
+         <image class="modules_icon" mode="scaleToFill" src="https://gamesdata.oss-cn-hangzhou.aliyuncs.com/xiaojueding/icon_edit_sub_60.png"></image>
+      </view>
+      <view class="modules_input_box">
+         <input bindinput="checkItem" class="modules_input" data-index="{{index}}" maxlength="13" placeholder="轮盘选项" placeholderStyle="color:#cfcfcf" type="text" value="{{item.name}}"></input>
+      </view>
+   </view>
+
+   <view bindtap="addItem" class="modules_box modules_add_box">
+      <view class="modules_icon_box">
+         <image class="modules_icon" mode="scaleToFill" src="https://gamesdata.oss-cn-hangzhou.aliyuncs.com/xiaojueding/icon_edit_add_60.png"></image>
+      </view>
+      <view class="modules_word_box">
+         <view class="modules_word">增加选项</view>
+      </view>
+   </view>
+
+   <view bindtap="saveWheel" class="modules_box modules_save_box">
+      <view class="modules_icon_box">保存</view>
+   </view>
+</view>

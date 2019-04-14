@@ -1,6 +1,6 @@
 /* pages/home/home.wxss */
 page{
-  background-color:#dddddd;
+  background-color:#dee5e7;
 }
 
 .wux-fab-button__label{

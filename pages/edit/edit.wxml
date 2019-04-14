@@ -1,16 +1,33 @@
-<!--pages/edit/edit.wxml-->
-<view class='container'>
-  <text>这是外层</text>
-  <view>
-    1
-  </view>
-    2
-  <view>
-    3
-  </view>
+<!--pages/list/list.wxml-->
+<view >
+       <!-- 个人小决定 -->
+      <view class="personal_question_list_box" style="display:'block'">
+         <view class="personal_question_list_cell question_list_cell" wx:for="{{wheelArray}}" wx:key="unique">
+            <view bindtap="personalQToRun" class="personal_question question"  data-index="{{index}}">{{item.optionName}}</view>
+            <view bindtap="menuControl" class="personal_question_control_box question_control_box" data-index="{{index}}">
+               <image class="question_control" mode="scaleToFill" src="{{index==item.flg?'/icon/left-circle.png':'https://gamesdata.oss-cn-hangzhou.aliyuncs.com/xiaojueding/icon_list_open_60.png'}}"></image>
+            </view>
+            
+            <view class="personal_question_btn_box question_btn_box" style="display:{{index==item.flg?'flex':'none'}};">
+               <button bindtap="up" class="question_btn_cell btn_boder_right" data-index="{{index}}" hoverClass="none">
+                  <image class="question_btn_icon" mode="scaleToFill" src="https://gamesdata.oss-cn-hangzhou.aliyuncs.com/xiaojueding/icon_list_index_60.png"></image>
+                  <view class="question_btn_title">上移</view>
+               </button>
+               <button bindtap="Revise" class="question_btn_cell btn_boder_right" data-index="{{index}}" hoverClass="none">
+                  <image class="question_btn_icon" mode="scaleToFill" src="https://gamesdata.oss-cn-hangzhou.aliyuncs.com/xiaojueding/icon_list_revise_60.png"></image>
+                  <view class="question_btn_title">编辑</view>
+               </button>
+               <button bindtap="Delete" class="question_btn_cell btn_boder_right" data-index="{{index}}" hoverClass="none">
+                  <image class="question_btn_icon" mode="scaleToFill" src="https://gamesdata.oss-cn-hangzhou.aliyuncs.com/xiaojueding/icon_list_delete_60.png"></image>
+                  <view class="question_btn_title">删除</view>
+               </button>
+               <button bindtap="down" class="question_btn_cell btn_boder_left"  data-index="{{index}}" hoverClass="none" >
+                  <image class="question_btn_icon" mode="scaleToFill" src="https://gamesdata.oss-cn-hangzhou.aliyuncs.com/xiaojueding/icon_list_share_60.png"></image>
+                  <view class="question_btn_title">下移</view>
+               </button>
+            </view>
+         </view>
+      </view>
 
-  <view>
-    4
-  </view>
 
-</view>
+   </view>

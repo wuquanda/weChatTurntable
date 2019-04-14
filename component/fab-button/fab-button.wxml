@@ -29,6 +29,7 @@
 		    binderror="onError"
 		    bindopensetting="bindopensetting"
 		    catchtap="onTap"
+        data-url="{{button.url}}"
 			style="{{ buttonStyle[index] }}"
 		>
 			<image class="{{ classes.icon }}" src="{{ button.icon }}" />

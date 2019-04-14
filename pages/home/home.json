@@ -3,7 +3,8 @@
     "fab-button":"../../component/fab-button/fab-button",
     "wheel":"../../component/wheel/wheel",
     "w-swiper-out": "../../component/w-swiper-out/w-swiper-out",
-    "w-pane": "../../component/w-pane/w-pane"
+    "w-pane": "../../component/w-pane/w-pane",
+    "popup":"../../component/popup/popup"
 
   },
   "navigationBarBackgroundColor": "#b3d4db"

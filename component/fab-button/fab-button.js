@@ -185,11 +185,11 @@ baseComponent({
             this.onChange(!this.data.buttonVisible)
         },
         onTap(e) {
-            const { index, value } = e.currentTarget.dataset
+            const { index, value,url } = e.currentTarget.dataset
             const params = {
                 index,
                 value,
-                buttons: this.data.buttons,
+                url,
             }
 
             if (!value.disabled) {

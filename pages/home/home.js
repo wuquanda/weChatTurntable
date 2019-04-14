@@ -7,17 +7,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    topNum:0,
     //右下角的浮动按钮
     fabButtonArr:[
     {
       "icon":"/icon/plus-circle.png",
       label:"添加",
+      "url":"/pages/addItem/addItem",
       disable:false
     },
     {
       "icon":"/icon/edit-square.png",
-      label:"编辑",
+      label:"管理",
+      "url":"/pages/edit/edit",
       diable:false
     }
     ],
@@ -41,7 +43,7 @@ Page({
       type: 'delete',
     },
     ],
-
+    show:false,
     wheelArray:{}, //用户的轮盘标签方案数组
     wheelConfig:{},//当前轮盘显示的标签方案
     optionName:'', //当前轮盘显示的标签方案名称
@@ -81,13 +83,17 @@ Page({
   
   edit:function (e){
     wx.navigateTo({
-      url: '/pages/edit/edit?index=' + e.currentTarget.dataset.index,
+      url: '/pages/addItem/addItem?index=' + e.currentTarget.dataset.index,
     })
   },
 
   //点击标签，在轮盘显示上显示
   add:function(e){
     this.setWheelData(e.currentTarget.dataset.index)
+    wx.pageScrollTo({
+      scrollTop:0,
+      duration: 300
+    })
   },
 
 
@@ -153,16 +159,20 @@ Page({
   onReachBottom: function () {
     
   },
-  mytest: function(){
-   wx.navigateTo({
-     url: '/pages/setting/setting',
-   })
+  onClick: function(e){
+    wx.navigateTo({
+      url: e.detail.url+"?index=-1",
+    })
   },
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
 
+  },
+
+  onClose(){
+    this.setData({show:false})
   },
 
   handleBtnClick(e) {
