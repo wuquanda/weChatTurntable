@@ -1,0 +1,16 @@
+<!--pages/edit/edit.wxml-->
+<view class='container'>
+  <text>这是外层</text>
+  <view>
+    1
+  </view>
+    2
+  <view>
+    3
+  </view>
+
+  <view>
+    4
+  </view>
+
+</view>

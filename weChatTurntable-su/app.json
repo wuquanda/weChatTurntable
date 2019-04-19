@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/newedit/newedit",
+    "pages/home/home",
+    "pages/edit/edit"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "选择轮盘",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}

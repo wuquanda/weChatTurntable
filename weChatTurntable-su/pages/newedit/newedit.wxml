@@ -1,0 +1,49 @@
+<view class="container">
+
+  <view class="perview">
+
+    <view class="nameinput_box">
+      <input bindinput='updateName' class='nameinput' maxlength='20' placeholder-style='color:green' focus='true' placeholder='标签名称'></input>
+    </view>
+
+    <view class="icon_box">
+      <image src="https://gamesdata.oss-cn-hangzhou.aliyuncs.com/xiaojueding/icon_edit_question_60.png" class="icon"></image>
+    </view> 
+
+  </view>
+
+  <!-- 点击后新增的编辑框 -->
+  <view class="perview" wx:for="{{add_list}}" wx:key="unique">
+
+    <view class="nameinput_box">
+      <input bindinput="updateList" class="nameinput" data-index="{{index}}" maxlength="13" placeholder="标签内容" placeholderStyle="color:red" type="text" value="{{item.name}}"></input>
+    </view>
+
+<!-- 删除 -->
+    <view bindtap="delete" class="icon_box" data-index="{{index}}">
+        <image class="icon" mode="scaleToFill" src="https://gamesdata.oss-cn-hangzhou.aliyuncs.com/xiaojueding/icon_edit_sub_60.png"></image>
+    </view>
+
+  </view>
+
+  <!-- 增加 -->
+  <view class="perview">
+
+    <view class="nameinput_box">
+      <view class="addtext">
+        <text>增加选项</text>
+      </view>
+    </view>
+
+    <view bindtap="add"  class="icon_box">
+      <!-- 加号图标 -->
+      <image class="icon" mode="scaleToFill" src="/icon/plus-circle.png"></image>
+    </view>
+
+  </view>
+
+  <view bindtap="save" class=" savebox">
+    <view class="icon_box">保存</view>
+  </view>
+
+</view>

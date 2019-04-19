@@ -1,0 +1,64 @@
+/* pages/home/home.wxss */
+page{
+  background-color:#dddddd;
+}
+
+.wux-fab-button__label{
+  position: absolute;
+  top:50%;
+  padding:8rpx 20rpx;
+  font-size:100px;
+  background:rgba(0, 0, 0, 0.185);
+  border-radius:6rpx;
+  color:rgba(15, 5, 5, 0.904);
+  pointer-events:none;
+  white-space:nowrap;
+  opacity:1;box-sizing:border-box;
+  transform:translate3d(0,-50%,0);
+  transition:all .3s}
+
+  .wux-fab-button__label{
+  position:absolute;
+  top:50%;
+  padding:8rpx 20rpx;
+  font-size:24rpx;
+  background:rgba(0,0,0,.4);border-radius:6rpx;color:rgba(14, 2, 2, 0);
+  pointer-events:none;
+  white-space:nowrap;
+  opacity:0;box-sizing:border-box;
+  transform:translate3d(0,-50%,0);
+  transition:all .3s}
+
+
+.wheel-label{
+  position:relative;
+  display: flex;
+  height: 100rpx;
+  width: 75%;   /* 调整轮盘下便签的左边条的长度,实际长度为width/2 */
+  background:rgba(80, 164, 233, 0.356);
+  font-size:40rpx; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.wheel-label wheel-label-text{
+  height: 48rpx;
+  width:300rpx;
+}
+
+.wheel-label-icon{
+  position:relative;
+  height:48rpx;
+  width: 48rpx;
+}
+
+.container {
+   margin: 0 auto;
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 30rpx;
+}
+

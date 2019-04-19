@@ -1,0 +1,25 @@
+<!--pages/home/home.wxml-->
+<view class="container">
+  <view >{{optionName}}</view>
+  <wheel id='wheelComponent'></wheel>
+</view>
+
+<!--这是轮盘选项标签 -->
+  <view>
+     <view wx:for="{{wheelArray}}" wx:for-item="wheel" wx:key="index" >
+    <w-swiper-out 
+    swiperOutBtns="{{swiperButtonSelect}}"
+    bind:delete="delete"
+    bind:edit="edit"
+    data-index="{{index}}"
+    >  
+      <view  class="wheel-label" bindtap="add" data-index="{{index}}">
+        {{wheel.optionName}}
+      </view>
+    </w-swiper-out>
+  </view>
+  
+  </view>
+<fab-button position="bottomRight"  theme="calm"   buttons="{{fabButtonArr}}" bindclick="mytest"> </fab-button>
+
+
